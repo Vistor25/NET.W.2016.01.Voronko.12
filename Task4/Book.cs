@@ -56,7 +56,6 @@ namespace Task4
             if (ReferenceEquals(this, other)) return true;
             return Title.Equals(other.Title) && Author.Equals(other.Author) && NumberOfPages == other.NumberOfPages &&
                 YearOfPublishing == other.YearOfPublishing && Price == other.Price;
-
         }
     }
 }
