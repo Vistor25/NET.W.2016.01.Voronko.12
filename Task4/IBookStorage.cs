@@ -4,7 +4,7 @@ namespace Task4
 {
     public interface IBookStorage
     {
-        BookListService Load();
+        List<Book> Load();
         void Save(List<Book> bookList);
     }
 }

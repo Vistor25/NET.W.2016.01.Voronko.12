@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Task4
 {
-    public class BookListService
+    public class BookListService:IEnumerable<Book>
     {
-        private List<Book> BookList { get; }
+        private List<Book> BookList { get;  set; }
 
         public BookListService()
         {
@@ -36,11 +37,25 @@ namespace Task4
             storage.Save(BookList);
         }
 
-        public BookListService Load(IBookStorage storage)
+        public void Load(IBookStorage storage)
         {
-            storage.Load();
+            foreach (var book in storage.Load())
+            {
+               AddBook(book);
+            }
         }
 
         public Book FindBookByTag(Predicate<Book> tag) => BookList.Find(tag);
+        public void SortBooksByTag(Func<Book, object> tag) => BookList.OrderBy(tag);
+
+        public IEnumerator<Book> GetEnumerator()
+        {
+            return BookList.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
     }
 }
