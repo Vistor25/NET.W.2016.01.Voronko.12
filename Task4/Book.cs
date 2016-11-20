@@ -13,9 +13,9 @@ namespace Task4
         public string Author;
         public int NumberOfPages;
         public int YearOfPublishing;
-        public double Price;
+        public decimal Price;
 
-        public Book(string title, string author, int numberOfPages, int yearOfPublishing, double price)
+        public Book(string title, string author, int numberOfPages, int yearOfPublishing, decimal price)
         {
             Title = title;
             Author = author;
@@ -46,12 +46,17 @@ namespace Task4
 
         public int CompareTo(Book other)
         {
-            throw new NotImplementedException();
+            if (ReferenceEquals(other, null)) return 1;
+            return NumberOfPages.CompareTo(other.NumberOfPages);
         }
 
         public bool Equals(Book other)
         {
-            throw new NotImplementedException();
+            if (ReferenceEquals(other, null)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return Title.Equals(other.Title) && Author.Equals(other.Author) && NumberOfPages == other.NumberOfPages &&
+                YearOfPublishing == other.YearOfPublishing && Price == other.Price;
+
         }
     }
 }
