@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Task4
 {
-    public class BookListService:IEnumerable<Book>
+    public class BookListService
     {
         private List<Book> BookList { get;  set; }
 
@@ -46,7 +46,7 @@ namespace Task4
         }
 
         public Book FindBookByTag(Predicate<Book> tag) => BookList.Find(tag);
-        public void SortBooksByTag(Func<Book, object> tag) => BookList.OrderBy(tag);
+        public void SortBooksByTag(Func<Book, int> tag) => BookList.OrderBy(tag);
 
         public IEnumerator<Book> GetEnumerator()
         {
